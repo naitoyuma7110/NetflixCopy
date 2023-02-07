@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../axios";
 
 type Props = {
 	title: string;
@@ -16,7 +16,7 @@ type Movie = {
 	backdrop_path: string;
 };
 
-export const Row = ({ title, fetchUrl }: Props) => {
+export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 	const [movies, setMovies] = useState<Movie[]>([]);
 
 	// when DOM render
@@ -34,5 +34,23 @@ export const Row = ({ title, fetchUrl }: Props) => {
 
 	console.log(movies);
 
-	return <div className="Row" />;
+	const base_url = "https://api.themoviedb.org/3";
+
+	return (
+		<div className="Row">
+			<h2>{title}</h2>
+			<div className="Row-posters">
+				{movies.map((movie, i) => (
+					<img
+						key={movie.id}
+						className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
+						src={`${base_url}${
+							isLargeRow ? movie.poster_path : movie.backdrop_path
+						}`}
+						alt={movie.name}
+					/>
+				))}
+			</div>
+		</div>
+	);
 };
