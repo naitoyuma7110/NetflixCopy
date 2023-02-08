@@ -34,7 +34,7 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 
 	console.log(movies);
 
-	const base_url = "https://api.themoviedb.org/3";
+	const base_url = "https://image.tmdb.org/t/p/";
 
 	return (
 		<div className="Row">
@@ -45,10 +45,18 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 						key={movie.id}
 						className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
 						src={`${base_url}${
-							isLargeRow ? movie.poster_path : movie.backdrop_path
+							isLargeRow
+								? `t/p/w300_and_h450_bestv2/${movie.poster_path}`
+								: `t/p/w300_and_h450_bestv2/${movie.backdrop_path}`
 						}`}
 						alt={movie.name}
 					/>
+					// <img
+					// 	key={movie.id}
+					// 	className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
+					// 	src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`}
+					// 	alt={movie.name}
+					// />
 				))}
 			</div>
 		</div>
