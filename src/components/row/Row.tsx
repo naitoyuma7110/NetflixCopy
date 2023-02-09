@@ -8,7 +8,7 @@ const base_url = "https://image.tmdb.org/3/";
 const YOUTUBE_baseURL = "https://www.googleapis.com/youtube/v3";
 
 type Filter = {
-	origin_country?: "JP" | "US";
+	original_language?: "ja" | "en";
 };
 
 type Props = {
@@ -16,6 +16,7 @@ type Props = {
 	fetchUrl: string;
 	isLargeRow?: boolean;
 	isTrend?: boolean;
+	filter?: "ja" | "en" | undefined;
 };
 
 type Movie = {
@@ -25,6 +26,7 @@ type Movie = {
 	original_name: string;
 	poster_path: string;
 	backdrop_path: string;
+	original_language: string;
 };
 
 //trailer option
@@ -42,19 +44,30 @@ type Options = {
 	};
 };
 
-export const Row = ({ title, fetchUrl, isLargeRow, isTrend }: Props) => {
+export const Row = ({
+	title,
+	fetchUrl,
+	isLargeRow,
+	isTrend,
+	filter,
+}: Props) => {
 	const [movies, setMovies] = useState<Movie[]>([]);
 
 	const [trailerUrl, setTrailerUrl] = useState<string | null>("");
 
-	const filter: Filter = {
-		origin_country: "JP",
-	};
+	// const filterMovies = (movies: Movie[]) =>
+	// 	movies.filter((movie) => {
+	// 		return movie.original_language == filter;
+	// 	});
+
 	// When DOM render And fetchUrl updated
 	useEffect(() => {
 		// function fetchDateを定義
 		async function fetchData() {
 			const request = await axios.get(fetchUrl);
+			// const filteredMovies = filter
+			// 	? request.data.results
+			// 	: filterMovies(request.data.results);
 			setMovies(request.data.results);
 			return request;
 		}
