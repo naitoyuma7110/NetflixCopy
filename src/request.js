@@ -20,8 +20,9 @@ const requests = {
 		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&region=japan`,
 	feactActionMovies:
 		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&with_genres=28`,
-	feactComedyMovies:
-		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&with_genres=35`,
+	feactAnimation:
+		MVDB_baseURL +
+		`/discover/tv?api_key=${MVDB_API_KEY}&with_genres=16&origin_country=JP`,
 	feactHorrorMovies:
 		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&with_genres=27`,
 	feactRomanceMovies:

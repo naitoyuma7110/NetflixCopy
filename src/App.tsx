@@ -14,8 +14,19 @@ export function App() {
 				title="Top Rated"
 				isLargeRow={true}
 				fetchUrl={requests.feachTrending}
+				isTrend={true}
 			/>
-			<Row title="Now Playng" fetchUrl={requests.feachNowplaying} />
+			<Row
+				title="Animation"
+				isLargeRow={true}
+				fetchUrl={requests.feactAnimation}
+				isTrend={false}
+			/>
+			<Row
+				title="Now Playng"
+				isTrend={false}
+				fetchUrl={requests.feachNowplaying}
+			/>
 		</div>
 	);
 }

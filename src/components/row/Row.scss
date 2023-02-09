@@ -6,10 +6,18 @@
 		display: flex;
 		overflow-y: hidden;
 		overflow-x: scroll;
-		padding: 20px;
+		padding: 10px;
 
 		&::-webkit-scrollbar {
-			display: none;
+			// display: none;
+			height: 14px;
+			border-radius: 10px;
+			background: rgba(100, 100, 100, 0.8);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: rgba(100, 0, 0, 0.8);
+			border-radius: 10px;
 		}
 	}
 
@@ -17,14 +25,15 @@
 		object-fit: contain;
 		width: 100%;
 		max-height: 100px;
-		margin: 10px;
+		margin: 4px;
 		transition: transform 450ms;
 
 		&-large {
 			max-height: 250px;
+			margin: 8px;
 
 			&:hover {
-				transform: scale(1.09);
+				transform: scale(5);
 			}
 		}
 

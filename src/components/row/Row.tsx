@@ -5,11 +5,17 @@ import axios from "../../axios";
 import "./Row.scss";
 import style from "./Youtube.module.scss";
 const base_url = "https://image.tmdb.org/3/";
+const YOUTUBE_baseURL = "https://www.googleapis.com/youtube/v3";
+
+type Filter = {
+	origin_country?: "JP" | "US";
+};
 
 type Props = {
 	title: string;
 	fetchUrl: string;
 	isLargeRow?: boolean;
+	isTrend?: boolean;
 };
 
 type Movie = {
@@ -36,11 +42,14 @@ type Options = {
 	};
 };
 
-export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
+export const Row = ({ title, fetchUrl, isLargeRow, isTrend }: Props) => {
 	const [movies, setMovies] = useState<Movie[]>([]);
 
 	const [trailerUrl, setTrailerUrl] = useState<string | null>("");
 
+	const filter: Filter = {
+		origin_country: "JP",
+	};
 	// When DOM render And fetchUrl updated
 	useEffect(() => {
 		// function fetchDateを定義
@@ -62,25 +71,34 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 			iv_load_policy: 3,
 			modestbranding: 1,
 			playsinline: 1,
-			loop: 0,
+			loop: 1,
 		},
 	};
 
 	const handleClick = async (movie: Movie) => {
-		if (trailerUrl) {
-			setTrailerUrl("");
-		}
+		trailerUrl && setTrailerUrl("");
 		try {
-			await axios
-				.get(
-					`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=` +
-						import.meta.env.VITE_MVDB_API_KEY
-				)
-				.then((res) => {
-					if (!("success" in res.data.results)) {
-						setTrailerUrl(res.data.results[0].key);
-					}
-				});
+			isTrend
+				? await axios
+						.get(
+							`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=` +
+								import.meta.env.VITE_MVDB_API_KEY
+						)
+						.then((res) => {
+							!("success" in res.data.results) &&
+								setTrailerUrl(res.data.results[0].key);
+							return true;
+						})
+				: await axios
+						.get(
+							`${YOUTUBE_baseURL}/search?key=${
+								import.meta.env.VITE_YOUTUBE_API_KEY
+							}&q=${movie.name + " op"}`
+						)
+						.then((res) => {
+							setTrailerUrl(res.data.items[0].id.videoId);
+						});
+
 			console.log(trailerUrl);
 		} catch (e) {
 			console.log(e + "axios-err");
@@ -97,11 +115,11 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 						className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
 						src={`${base_url}${
 							isLargeRow
-								? `t/p/w92/${movie.poster_path}`
-								: `t/p/w45/${movie.backdrop_path}`
+								? `t/p/w185/${movie.poster_path}`
+								: `t/p/w154/${movie.backdrop_path}`
 						}`}
 						alt={movie.name}
-						onClick={() => handleClick(movie)}
+						onClick={() => isLargeRow && handleClick(movie)}
 					/>
 				))}
 			</div>
@@ -113,6 +131,7 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 						opts={opts}
 						className={style.iframe}
 						iframeClassName={style.youtube}
+						onEnd={() => setTrailerUrl("")}
 					/>
 				</div>
 			)}
