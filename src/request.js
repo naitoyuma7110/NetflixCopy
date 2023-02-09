@@ -10,11 +10,14 @@ const requests = {
 		MVDB_baseURL +
 		`/movie/now_playing?api_key=${MVDB_API_KEY}&language=en-US&page=1`,
 	feachTrending:
-		MVDB_baseURL + `/trending/all/week?api_key=${MVDB_API_KEY}&language=en-us`,
+		// MVDB_baseURL + `/trending/all/week?api_key=${MVDB_API_KEY}&language=en-us`,
+		MVDB_baseURL + `/trending/all/week?api_key=${MVDB_API_KEY}&watch_region=jp`,
+
 	feachNetflixOriginals:
-		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&with_networks=213`,
+		MVDB_baseURL +
+		`/discover/tv?api_key=${MVDB_API_KEY}&with_networks=213&region=japan`,
 	feactTopRated:
-		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&languager=en-us`,
+		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&region=japan`,
 	feactActionMovies:
 		MVDB_baseURL + `/discover/tv?api_key=${MVDB_API_KEY}&with_genres=28`,
 	feactComedyMovies:

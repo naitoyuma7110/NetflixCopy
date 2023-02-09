@@ -1,7 +1,9 @@
+import { number } from "prop-types";
 import { useState, useEffect } from "react";
 import YouTube from "react-youtube";
 import axios from "../../axios";
 import "./Row.scss";
+import style from "./Youtube.module.scss";
 const base_url = "https://image.tmdb.org/3/";
 
 type Props = {
@@ -25,6 +27,12 @@ type Options = {
 	width: string;
 	playerVars: {
 		autoplay: 0 | 1 | undefined;
+		controls: 0 | 1 | undefined;
+		fs: 0 | 1 | undefined;
+		iv_load_policy: number | undefined;
+		modestbranding: number | undefined;
+		playsinline: number | undefined;
+		loop: number | undefined;
 	};
 };
 
@@ -49,6 +57,12 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 		width: "640",
 		playerVars: {
 			autoplay: 1,
+			controls: 0,
+			fs: 0,
+			iv_load_policy: 3,
+			modestbranding: 1,
+			playsinline: 1,
+			loop: 0,
 		},
 	};
 
@@ -91,7 +105,17 @@ export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
 					/>
 				))}
 			</div>
-			{trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+			{trailerUrl && (
+				<div className={style.container}>
+					<div className={style.filter}></div>
+					<YouTube
+						videoId={trailerUrl}
+						opts={opts}
+						className={style.iframe}
+						iframeClassName={style.youtube}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

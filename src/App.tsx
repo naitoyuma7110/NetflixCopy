@@ -9,14 +9,13 @@ export function App() {
 	return (
 		<div className="App">
 			<Nav />
-			<div style={{ height: "800px" }}>Space</div>
-			{/* <Banner /> */}
+			<Banner />
 			<Row
 				title="Top Rated"
 				isLargeRow={true}
 				fetchUrl={requests.feachTrending}
 			/>
-			{/* <Row title="Now Playng" fetchUrl={requests.feachNowplaying} /> */}
+			<Row title="Now Playng" fetchUrl={requests.feachNowplaying} />
 		</div>
 	);
 }
