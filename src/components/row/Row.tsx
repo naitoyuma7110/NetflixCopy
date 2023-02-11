@@ -40,7 +40,6 @@ type Options = {
 		iv_load_policy: number | undefined;
 		modestbranding: number | undefined;
 		playsinline: number | undefined;
-		loop: number | undefined;
 	};
 };
 
@@ -55,6 +54,7 @@ export const Row = ({
 
 	const [trailerUrl, setTrailerUrl] = useState<string | null>("");
 
+	// filterをかけると対象動画0になる事がある
 	// const filterMovies = (movies: Movie[]) =>
 	// 	movies.filter((movie) => {
 	// 		return movie.original_language == filter;
@@ -84,7 +84,6 @@ export const Row = ({
 			iv_load_policy: 3,
 			modestbranding: 1,
 			playsinline: 1,
-			loop: 1,
 		},
 	};
 
@@ -114,7 +113,7 @@ export const Row = ({
 
 			console.log(trailerUrl);
 		} catch (e) {
-			console.log(e + "axios-err");
+			console.log(e + "axios error");
 		}
 	};
 
