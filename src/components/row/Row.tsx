@@ -144,6 +144,9 @@ export const Row = ({
 						className={style.iframe}
 						iframeClassName={style.youtube}
 						onEnd={() => setTrailerUrl("")}
+						onReady={(e) => {
+							e.target.playVideo();
+						}}
 					/>
 				</div>
 			)}
