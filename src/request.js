@@ -2,7 +2,6 @@ const MVDB_API_KEY = import.meta.env.VITE_MVDB_API_KEY;
 const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 const MVDB_baseURL = "https://api.themoviedb.org/3";
-
 const YOUTUBE_baseURL = "https://www.googleapis.com/youtube/v3";
 
 const requests = {

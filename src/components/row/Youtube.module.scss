@@ -1,10 +1,16 @@
+@import "../../assets/globalstyle/_breakpoint";
+@import "../../assets/globalstyle/_mixin";
+
 .youtube {
 	height: 100%;
 	width: 100%;
 }
 .iframe {
 	width: 100%;
-	height: 130%;
+	height: 145%;
+	@include mq(md) {
+		height: 130%;
+	}
 }
 
 .filter {
@@ -17,7 +23,11 @@
 .container {
 	position: relative;
 	background: black;
-	height: 24rem;
+	height: 16rem;
+	@include mq(md) {
+		height: 24rem;
+	}
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
