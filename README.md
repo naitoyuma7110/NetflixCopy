@@ -5,7 +5,7 @@
 Netflix の人気動画のジャンル別ランキングを取得して各タイトルイメージを設置  
 ミニプレイヤーにて動画再生を行う
 
-URL：https://mvdb-sample-app.netlify.app
+URL：https://mvdb-sample-app.netlify.app  
 ※爆音注意
 
 ## 使用技術
