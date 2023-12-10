@@ -6,6 +6,7 @@ Netflix の人気動画のジャンル別ランキングを取得して各タイ
 ミニプレイヤーにて動画再生を行う
 
 URL：https://mvdb-sample-app.netlify.app
+※爆音注意
 
 ## 使用技術
 
@@ -14,3 +15,6 @@ URL：https://mvdb-sample-app.netlify.app
 - Netlify(ホスティングサービス)
 - MVDB：Netflix のランキング情報を条件を設定して取得
 - Youtube API：キーワードなどの条件を指定して動画内容を取得,Youtube Player で再生
+
+## 構成
+![image](https://github.com/naitoyuma7110/NetflixCopy/assets/128150297/13f718b2-1515-4f32-98f1-1f3a86316073)
