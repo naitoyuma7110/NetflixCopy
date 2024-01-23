@@ -1,7 +1,5 @@
 ## API による動画取得・再生(ヘッドレス構成)
 
-参考：https://zenn.dev/gunners6518/books/4c4672f32dd100
-
 ## 概要
 
 Netflix の人気動画のジャンル別ランキングを取得して各タイトルイメージを設置  
@@ -20,3 +18,5 @@ URL：https://mvdb-sample-app.netlify.app
 
 ## 構成
 ![image](https://github.com/naitoyuma7110/NetflixCopy/assets/128150297/13f718b2-1515-4f32-98f1-1f3a86316073)
+
+参考：https://zenn.dev/gunners6518/books/4c4672f32dd100
