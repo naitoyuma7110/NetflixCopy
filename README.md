@@ -16,7 +16,4 @@ URL：https://mvdb-sample-app.netlify.app
 - MVDB：Netflix のランキング情報を条件を設定して取得
 - Youtube API：キーワードなどの条件を指定して動画内容を取得,Youtube Player で再生
 
-## 構成
-![image](https://github.com/naitoyuma7110/NetflixCopy/assets/128150297/13f718b2-1515-4f32-98f1-1f3a86316073)
-
 参考：https://zenn.dev/gunners6518/books/4c4672f32dd100
