@@ -8,8 +8,6 @@ Netflix の人気動画のジャンル別ランキングを取得して各タイ
 URL：https://mvdb-sample-app.netlify.app  
 ※爆音注意
 
-## 使用技術
-
 - Typescript
 - Next.js(React)
 - Netlify(ホスティングサービス)
