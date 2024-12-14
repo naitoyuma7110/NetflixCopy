@@ -9,11 +9,11 @@ export const Nav = (props: Props) => {
 	const [show, setShow] = useState(false);
 	useEffect(() => {
 		const handleShow = () => {
-			// if (window.scrollY > 100) {
-			// 	setShow(true);
-			// } else {
-			// 	setShow(false);
-			// }
+			if (window.scrollY > 100) {
+				setShow(true);
+			} else {
+				setShow(false);
+			}
 
 			window.scrollY > 100 ? setShow(true) : setShow(false);
 		};
