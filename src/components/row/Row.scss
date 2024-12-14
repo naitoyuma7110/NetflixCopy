@@ -1,6 +1,17 @@
 .Row {
 	margin-left: 20px;
 	color: #fff;
+	.close {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+		line-height: 0;
+		cursor: pointer;
+		z-index: 15;
+		top: 10px;
+		left: 20px;
+	}
 
 	&-posters {
 		display: flex;

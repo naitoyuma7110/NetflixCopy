@@ -16,7 +16,7 @@ type Props = {
 	fetchUrl: string;
 	isLargeRow?: boolean;
 	isTrend?: boolean;
-	filter?: "ja" | "en" | undefined;
+	filter?: Filter | undefined;
 };
 
 type Movie = {
@@ -29,7 +29,6 @@ type Movie = {
 	original_language: string;
 };
 
-//trailer option
 type Options = {
 	height: string;
 	width: string;
@@ -138,6 +137,9 @@ export const Row = ({
 			{trailerUrl && (
 				<div className={style.container}>
 					<div className={style.filter}></div>
+					<div onClick={() => setTrailerUrl("")} className="close">
+						x
+					</div>
 					<YouTube
 						videoId={trailerUrl}
 						opts={opts}
@@ -145,6 +147,7 @@ export const Row = ({
 						iframeClassName={style.youtube}
 						onEnd={() => setTrailerUrl("")}
 						onReady={(e) => {
+							e.target.setVolume(1);
 							e.target.playVideo();
 						}}
 					/>
