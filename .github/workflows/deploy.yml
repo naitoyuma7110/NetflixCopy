@@ -1,52 +1,10 @@
-name: Deploy Vite App to GitHub Pages
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      # リポジトリのクローン
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-
-      # Node.js のセットアップ
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      # 環境変数の設定（Secrets を環境変数として設定）
-      - name: Set environment variables
-        run: |
-          echo "VITE_MVDB_API_KEY=${{ secrets.VITE_MVDB_API_KEY }}" >> $GITHUB_ENV
-          echo "VITE_YOUTUBE_API_KEY=${{ secrets.VITE_YOUTUBE_API_KEY }}" >> $GITHUB_ENV
-
-      # 依存関係のインストールとビルド
-      - name: Install dependencies and build
-        run: |
-          npm ci
-          npm run build
-
-      # ビルド済みファイルを GitHub Pages にデプロイ
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-
-
 # 静的コンテンツを GitHub Pages にデプロイするためのシンプルなワークフロー
 name: Deploy static content to GitHub Pages
 
 on:
   # デフォルトブランチを対象としたプッシュ時にで実行
   push:
-    branches: ['master']
+    branches: ["master"]
 
   # Actions タブから手動でワークフローを実行
   workflow_dispatch:
@@ -59,7 +17,7 @@ permissions:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -76,7 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
       - name: Set environment variables
         run: |
           echo "VITE_MVDB_API_KEY=${{ secrets.VITE_MVDB_API_KEY }}" >> $GITHUB_ENV
@@ -91,7 +49,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # dist フォルダーのアップロード
-          path: './dist'
+          path: "./dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
