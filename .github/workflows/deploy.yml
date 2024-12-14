@@ -20,6 +20,12 @@ jobs:
         with:
           node-version: 18
 
+      # 環境変数の設定（Secrets を環境変数として設定）
+      - name: Set environment variables
+        run: |
+          echo "VITE_MVDB_API_KEY=${{ secrets.VITE_MVDB_API_KEY }}" >> $GITHUB_ENV
+          echo "VITE_YOUTUBE_API_KEY=${{ secrets.VITE_YOUTUBE_API_KEY }}" >> $GITHUB_ENV
+
       # 依存関係のインストールとビルド
       - name: Install dependencies and build
         run: |
