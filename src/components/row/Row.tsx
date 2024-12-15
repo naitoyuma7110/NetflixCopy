@@ -12,11 +12,14 @@ type Filter = {
 };
 
 type Props = {
+	index: number;
 	title: string;
 	fetchUrl: string;
 	isLargeRow?: boolean;
 	isTrend?: boolean;
 	filter?: Filter | undefined;
+	isPlaying?: boolean;
+	onRowMovieOpen: (id: number) => void;
 };
 
 type Movie = {
@@ -43,15 +46,23 @@ type Options = {
 };
 
 export const Row = ({
+	index,
 	title,
 	fetchUrl,
 	isLargeRow,
 	isTrend,
 	filter,
+	isPlaying,
+	onRowMovieOpen,
 }: Props) => {
 	const [movies, setMovies] = useState<Movie[]>([]);
 
 	const [trailerUrl, setTrailerUrl] = useState<string | null>("");
+
+	const handleEmit = () => {
+		console.log(`Action triggered in child: ${title}`);
+		onRowMovieOpen(index);
+	};
 
 	// filterをかけると対象動画0になる事がある
 	// const filterMovies = (movies: Movie[]) =>
@@ -119,6 +130,7 @@ export const Row = ({
 	return (
 		<div className="Row">
 			<h2>{title}</h2>
+			<button onClick={handleEmit}>test</button>
 			<div className="Row-posters">
 				{movies.map((movie, i) => (
 					<img
@@ -130,11 +142,14 @@ export const Row = ({
 								: `t/p/w154/${movie.backdrop_path}`
 						}`}
 						alt={movie.name}
-						onClick={() => isLargeRow && handleClick(movie)}
+						onClick={() => {
+							handleEmit();
+							isLargeRow && handleClick(movie);
+						}}
 					/>
 				))}
 			</div>
-			{trailerUrl && (
+			{trailerUrl && isPlaying && (
 				<div className={style.container}>
 					<div className={style.filter}></div>
 					<div onClick={() => setTrailerUrl("")} className="close">
