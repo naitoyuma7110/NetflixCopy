@@ -130,7 +130,6 @@ export const Row = ({
 	return (
 		<div className="Row">
 			<h2>{title}</h2>
-			<button onClick={handleEmit}>test</button>
 			<div className="Row-posters">
 				{movies.map((movie, i) => (
 					<img
